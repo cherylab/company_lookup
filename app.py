@@ -144,6 +144,8 @@ def lookup_page():
     table {margin: 0}
     table {border-collapse: collapse}
     table {border: 2px solid white}
+    table {display: block}
+    table {overflow-x: auto}
     
     tbody tr:nth-child(odd) {background-color: #fff}
     tbody tr:nth-child(even) {background-color: #f6f8f9}
