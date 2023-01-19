@@ -58,55 +58,6 @@ def pull_data(filename):
     tmp = pd.read_pickle(filename)
     return tmp
 
-
-def getTableHTML(df):
-    """
-    From https://stackoverflow.com/a/49687866/2007153
-
-    Get a Jupyter like html of pandas dataframe
-
-    """
-
-    styles = [
-        # table properties
-        dict(selector=" ",
-             props=[("margin", "0"),
-                    ("font-family", '"Helvetica", "Arial", sans-serif'),
-                    ("border-collapse", "collapse"),
-                    # ("border","none"),
-                    ("border", "2px solid white")
-                    ]),
-
-        # header color - optional
-        #     dict(selector="thead",
-        #          props=[("background-color","#cc8484")
-        #                ]),
-
-        # background shading
-        dict(selector="tbody tr:nth-child(odd)",
-             props=[("background-color", "#fff")]),
-        dict(selector="tbody tr:nth-child(even)",
-             props=[("background-color", "#F6F8F9")]),
-
-        # cell spacing
-        dict(selector="td",
-             props=[("padding", ".5em"),
-                    ("text-align", "right"),
-                    ("font-size", '14')]),
-
-        # header cell properties
-        dict(selector="th",
-             props=[("font-size", "14"),
-                    ("text-align", "right")]),
-
-        dict(selector="tbody tr:hover",
-             props=[('background-color', '#d9d9d9'),
-                    ('cursor', 'pointer')])
-
-    ]
-    return (df.style.set_table_styles(styles)).render()
-
-
 def sidebar_config(options, tsla_index):
     chosen_comp = st.sidebar.selectbox(label="Symbol", options=options, index=tsla_index)
     return chosen_comp
