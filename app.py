@@ -108,22 +108,35 @@ def getTableHTML(df):
 
 
 def sidebar_config(options, tsla_index):
-    chosen_tick = st.sidebar.selectbox(label="Symbol", options=options, index=tsla_index)
-    return chosen_tick
+    chosen_comp = st.sidebar.selectbox(label="Symbol", options=options, index=tsla_index)
+    return chosen_comp
 
 def lookup_page():
     st.title('Company Lookup')
 
     data = pull_data("iwv-2002-2022-numericals.pkl")
 
-    options = sorted(data.Symbol.unique().tolist())
-    tsla_index = options.index("TSLA-US")
+    options = sorted(data.Company_Name.unique().tolist())
+    tsla_index = options.index("Tesla Inc")
 
-    chosen_tick = sidebar_config(options, tsla_index)
+    chosen_comp = sidebar_config(options, tsla_index)
 
-    firstdf = data[data.Symbol == chosen_tick].sort_values('StartDate', ascending=False) \
+    firstdf = data[data.Company_Name == chosen_comp].sort_values('StartDate', ascending=False) \
         [['Sales', 'EBIT', 'EBIT_ROIC', 'OCF', 'OCF_ROIC', 'ROA', 'CurrAssets', 'Cash', 'TangibleCapital']]\
-    .reset_index().reset_index(drop=True)
+        .reset_index().reset_index(drop=True)
+
+    seconddf = data[data.Company_Name == chosen_comp].sort_values('StartDate', ascending=False) \
+        [["EBIT", "RD", "FCF", "EBIT_ROIC", "EBIT_RD_ROIC", "FCF_ROIC", "FCF_RD_ROIC", "RD_Cap", "RD_Sales"]]\
+        .reset_index().reset_index(drop=True)
+
+    thirddf = data[data.Company_Name == chosen_comp].sort_values('StartDate', ascending=False) \
+        [["ShareholderYield1", "DividendYield", "DownsideBeta", "UpsideBeta", "Net_Cash", "ST_Debt", "LT_Debt"]]\
+        .reset_index().reset_index(drop=True)
+
+    fourthdf = data[data.Company_Name == chosen_comp].sort_values('StartDate', ascending=False) \
+        [["EBIT_EV", "OCF_EV", "FCF_EV", "EBIT_RD_EV", "OCF_RD_EV", "FCF_RD_EV"]]\
+        .reset_index().reset_index(drop=True)
+
 
 
     html_styling = """
@@ -155,10 +168,17 @@ def lookup_page():
 
     st.markdown(html_styling, unsafe_allow_html=True)
 
-    st.table(firstdf)
+    with st.beta_expander("EBIT ROIC", expanded=True):
+        st.table(firstdf)
 
+    with st.beta_expander("R&D Focused", expanded=True):
+        st.table(seconddf)
 
-    # st.write(HTML(getTableHTML(firstdf)))
+    with st.beta_expander("Yield, Beta, Cash & Debt", expanded=True):
+        st.table(thirddf)
+
+    with st.beta_expander("Earnings Yield Valuation", expanded=True):
+        st.table(fourthdf)
 
 def create_app_with_pages():
     # CREATE PAGES IN APP
