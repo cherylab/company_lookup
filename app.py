@@ -90,7 +90,10 @@ def lookup_page():
         [["EBIT_EV", "OCF_EV", "FCF_EV", "EBIT_RD_EV", "OCF_RD_EV", "FCF_RD_EV"]]\
         .reset_index().reset_index(drop=True)
 
-
+    fifthdf =data[data.Company_Name == chosen_comp].sort_values('StartDate', ascending=False) \
+        [['EBITGrowth-1y', 'EBITGrowth-3y', 'SalesGrowth-1y', 'SalesGrowth-3y',
+          'OCFGrowth-1y', 'OCFGrowth-3y', ]]\
+        .reset_index().reset_index(drop=True)
 
     html_styling = """
     <style>
@@ -137,6 +140,9 @@ def lookup_page():
 
     with st.beta_expander("Earnings Yield Valuation", expanded=True):
         st.table(fourthdf)
+
+    with st.beta_expander("Growth Focused", expanded=True):
+        st.table(fifthdf)
 
 def create_app_with_pages():
     # CREATE PAGES IN APP
