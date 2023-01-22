@@ -71,6 +71,7 @@ def lookup_page():
     options = sorted(data.Company_Name.unique().tolist())
     tsla_index = options.index("Tesla Inc")
 
+    # chosen_comp = st.selectbox(label="Symbol", options=options, index=tsla_index)
     chosen_comp = sidebar_config(options, tsla_index)
 
     firstdf = data[data.Company_Name == chosen_comp].sort_values('StartDate', ascending=False) \
@@ -142,6 +143,7 @@ def create_app_with_pages():
     app = MultiApp()
     app.add_app("Simple Lookup", lookup_page, [])
     app.run(logo_path='logo.png')
+    # app.run(logo_path="")
 
 if __name__ == '__main__':
     create_app_with_pages()
