@@ -123,6 +123,9 @@ def lookup_page():
 
     with st.beta_expander("EBIT ROIC", expanded=True):
         st.table(firstdf)
+        # st.download_button(label='Download Current Result',
+        #                    data=firstdf,
+        #                    file_name='ebit_roic.xlsx')
 
     with st.beta_expander("R&D Focused", expanded=True):
         st.table(seconddf)
