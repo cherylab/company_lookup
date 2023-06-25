@@ -22,6 +22,7 @@ import plot_settings
 from multiapp import MultiApp
 import streamlit as st
 from IPython.display import display, HTML, Latex, TextDisplayObject
+import pkg_resources
 
 st.set_page_config(layout='wide')
 
@@ -142,6 +143,11 @@ def lookup_page():
 
     with st.expander("Growth Focused", expanded=True):
         st.table(fifthdf)
+
+    st.title('Installed Packages')
+    installed_packages = [(d.project_name, d.version) for d in pkg_resources.working_set]
+    for package in sorted(installed_packages):
+        st.text(f'{package[0]}=={package[1]}')
 
 def create_app_with_pages():
     # CREATE PAGES IN APP
