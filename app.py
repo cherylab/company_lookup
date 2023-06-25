@@ -125,22 +125,22 @@ def lookup_page():
 
     st.markdown(html_styling, unsafe_allow_html=True)
 
-    with st.beta_expander("EBIT ROIC", expanded=True):
+    with st.expander("EBIT ROIC", expanded=True):
         st.table(firstdf)
         # st.download_button(label='Download Current Result',
         #                    data=firstdf,
         #                    file_name='ebit_roic.xlsx')
 
-    with st.beta_expander("R&D Focused", expanded=True):
+    with st.expander("R&D Focused", expanded=True):
         st.table(seconddf)
 
-    with st.beta_expander("Yield, Beta, Cash & Debt", expanded=True):
+    with st.expander("Yield, Beta, Cash & Debt", expanded=True):
         st.table(thirddf)
 
-    with st.beta_expander("Earnings Yield Valuation", expanded=True):
+    with st.expander("Earnings Yield Valuation", expanded=True):
         st.table(fourthdf)
 
-    with st.beta_expander("Growth Focused", expanded=True):
+    with st.expander("Growth Focused", expanded=True):
         st.table(fifthdf)
 
 def create_app_with_pages():
