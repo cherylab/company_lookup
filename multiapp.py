@@ -40,14 +40,14 @@ class MultiApp:
 
     def run(self, logo_path=""):
         # if logo_path != "":
-        #     app = col1, col2, col3 = st.beta_columns([1,6,1])
+        #     app = col1, col2, col3 = st.columns([1,6,1])
         #     app = col1.write("")
         #     app = col2.image(logo_path, use_column_width=True)
         #     app = col3.write("")
         #     app = st.write("<br>", unsafe_allow_html=True)
 
         if logo_path != "":
-            app = col1, col2, col3 = st.sidebar.beta_columns([1,6,1])
+            app = col1, col2, col3 = st.sidebar.columns([1,6,1])
             app = col1.write("")
             app = col2.image(logo_path, use_column_width=True)
             app = col3.write("")
