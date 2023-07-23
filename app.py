@@ -98,31 +98,56 @@ def lookup_page():
           'OCFGrowth-1y', 'OCFGrowth-3y', ]]\
         .reset_index().reset_index(drop=True)
 
+    # html_styling = """
+    # <style>
+    # table {margin: 0}
+    # table {border-collapse: collapse}
+    # table {border: 2px solid white}
+    # table {display: block}
+    # table {overflow-x: auto}
+    
+    # tbody tr:nth-child(odd) {background-color: #fff}
+    # tbody tr:nth-child(even) {background-color: #f6f8f9}
+    
+    # td {padding: .5em}
+    # td {text-align: right} 
+    # td {font-size: 14px}
+    # td {font-family: Helvetica}
+    
+    # th {text-align: right}
+    # th {font-family: Helvetica}
+    # th {font-size: 14px}
+    
+    # thead tr th:first-child {display:none}
+    # tbody th {display:none}
+    
+    # tbody tr:hover {background-color: #d9d9d9}
+    # tbody tr:hover {cursor: "pointer"}
+
+    # </style>
+    # """
+
     html_styling = """
     <style>
-    table {margin: 0}
-    table {border-collapse: collapse}
-    table {border: 2px solid white}
-    table {display: block}
-    table {overflow-x: auto}
+    table {margin: 0; border-collapse: collapse; border: 2px solid white; display: block; overflow-x: auto;}
+
+    tbody tr:nth-child(odd) {background-color: #fff;}
+    tbody tr:nth-child(even) {background-color: #f6f8f9;}
     
-    tbody tr:nth-child(odd) {background-color: #fff}
-    tbody tr:nth-child(even) {background-color: #f6f8f9}
+    table td, table th {
+        padding: .5em; 
+        text-align: right;
+        font-size: 14px;
+        font-family: Helvetica;
+    }
     
-    td {padding: .5em}
-    td {text-align: right} 
-    td {font-size: 14px}
-    td {font-family: Helvetica}
+    thead tr th:first-child {display:none;}
+    tbody th {display:none;}
     
-    th {text-align: right}
-    th {font-family: Helvetica}
-    th {font-size: 14px}
-    
-    thead tr th:first-child {display:none}
-    tbody th {display:none}
-    
-    tbody tr:hover {background-color: #d9d9d9}
-    tbody tr:hover {cursor: "pointer"}
+    tbody tr:hover {
+        background-color: #d9d9d9; 
+        cursor: "pointer";
+    }
 
     </style>
     """
