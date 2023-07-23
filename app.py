@@ -66,7 +66,8 @@ def lookup_page():
     st.title('Company Lookup')
 
     # data = pull_data("iwv-2002-2022-numericals.pkl")
-    data = pull_data("iwv-2002-2022-objects-20230122.pkl")
+    # data = pull_data("iwv-2002-2022-objects-20230122.pkl")
+    data = pull_data("iwv-2002-2023-objects-2023-06-30.pkl")
 
     options = sorted(data.Company_Name.unique().tolist())
     tsla_index = options.index("Tesla Inc")
