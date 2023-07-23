@@ -136,7 +136,7 @@ def lookup_page():
     
     table td, table th {
         padding: .5em; 
-        text-align: right;
+        text-align: right !important;
         font-size: 14px;
         font-family: Helvetica;
     }
