@@ -53,7 +53,7 @@ st.set_page_config(layout='wide')
 #     tmp = d.copy()
 #     return tmp
 
-@st.cache
+@st.cache_data
 def pull_data(filename):
     tmp = pd.read_pickle(filename)
     return tmp
@@ -69,29 +69,31 @@ def lookup_page():
     # data = pull_data("iwv-2002-2022-objects-20230122.pkl")
     data = pull_data("iwv-2002-2023-objects-2023-06-30.pkl")
 
-    options = sorted(data.Company_Name.unique().tolist())
-    tsla_index = options.index("Tesla Inc")
+    # options = sorted(data.Company_Name.unique().tolist())
+    options = sorted(data.Symbol.unique().tolist())
+    tsla_index = options.index("TSLA-US")
 
     # chosen_comp = st.selectbox(label="Symbol", options=options, index=tsla_index)
     chosen_comp = sidebar_config(options, tsla_index)
 
-    firstdf = data[data.Company_Name == chosen_comp].sort_values('StartDate', ascending=False) \
+    # firstdf = data[data.Company_Name == chosen_comp].sort_values('StartDate', ascending=False) \
+    firstdf = data[data.Symbol == chosen_comp].sort_values('StartDate', ascending=False) \
         [['Sales', 'EBIT', 'EBIT_ROIC', 'OCF', 'OCF_ROIC', 'ROA', 'CurrAssets', 'Cash', 'TangibleCapital']]\
         .reset_index().reset_index(drop=True)
 
-    seconddf = data[data.Company_Name == chosen_comp].sort_values('StartDate', ascending=False) \
+    seconddf = data[data.Symbol == chosen_comp].sort_values('StartDate', ascending=False) \
         [["EBIT", "RD", "FCF", "EBIT_ROIC", "EBIT_RD_ROIC", "FCF_ROIC", "FCF_RD_ROIC", "RD_Cap", "RD_Sales"]]\
         .reset_index().reset_index(drop=True)
 
-    thirddf = data[data.Company_Name == chosen_comp].sort_values('StartDate', ascending=False) \
+    thirddf = data[data.Symbol == chosen_comp].sort_values('StartDate', ascending=False) \
         [["ShareholderYield1", "DividendYield", "DownsideBeta", "UpsideBeta", "Net_Cash", "ST_Debt", "LT_Debt"]]\
         .reset_index().reset_index(drop=True)
 
-    fourthdf = data[data.Company_Name == chosen_comp].sort_values('StartDate', ascending=False) \
+    fourthdf = data[data.Symbol == chosen_comp].sort_values('StartDate', ascending=False) \
         [["EBIT_EV", "OCF_EV", "FCF_EV", "EBIT_RD_EV", "OCF_RD_EV", "FCF_RD_EV"]]\
         .reset_index().reset_index(drop=True)
 
-    fifthdf =data[data.Company_Name == chosen_comp].sort_values('StartDate', ascending=False) \
+    fifthdf =data[data.Symbol == chosen_comp].sort_values('StartDate', ascending=False) \
         [['EBITGrowth-1y', 'EBITGrowth-3y', 'SalesGrowth-1y', 'SalesGrowth-3y',
           'OCFGrowth-1y', 'OCFGrowth-3y', ]]\
         .reset_index().reset_index(drop=True)
