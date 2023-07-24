@@ -78,7 +78,7 @@ def lookup_page():
 
     # firstdf = data[data.Company_Name == chosen_comp].sort_values('StartDate', ascending=False) \
     firstdf = data[data.Symbol == chosen_comp].sort_values('StartDate', ascending=False) \
-        [['Sales', 'EBIT', 'EBIT_ROIC', 'OCF', 'OCF_ROIC', 'CurrAssets', 'Cash', 'AccountsPayable', 'NetFixedAssets', 'TangibleCapital']]\
+        [['Sales', 'EBIT', 'EBIT_ROIC', 'OCF', 'OCF_ROIC', 'CurrAssets', 'Cash', 'ActPay', 'NetFixed', 'TangibleCapital']]\
         .reset_index().reset_index(drop=True)
 
     seconddf = data[data.Symbol == chosen_comp].sort_values('StartDate', ascending=False) \
