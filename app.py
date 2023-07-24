@@ -90,10 +90,11 @@ def lookup_page():
         .reset_index().reset_index(drop=True)
 
     thirddf = data[data.Symbol == chosen_comp].sort_values('StartDate', ascending=False) \
-        [['EBITMargin', 'EBIT_RD_Sales', 'NetMargin', 'FCF_Sales', 'ROA', 'ROE', 'Net_Cash_Pct']]
+        [['EBITMargin', 'EBIT_RD_Sales', 'NetMargin', 'FCF_Sales', 'ROA', 'ROE', ]]\
+    .reset_index().reset_index(drop=True)
    
     fourthdf = data[data.Symbol == chosen_comp].sort_values('StartDate', ascending=False) \
-        [['ShareholderYield1', 'DividendYield', 'Dividend', 'BuyBackDollars', 'Cash', 'Net_Cash', 'ST_Debt', 'LT_Debt']]\
+        [['ShareholderYield1', 'DividendYield', 'Dividend', 'BuyBackDollars', 'Cash', 'Net_Cash', 'ST_Debt', 'LT_Debt','Net_Cash_Pct']]\
         .reset_index().reset_index(drop=True)
     
     fifthdf =data[data.Symbol == chosen_comp].sort_values('StartDate', ascending=False) \
