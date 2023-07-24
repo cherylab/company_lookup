@@ -102,7 +102,7 @@ def lookup_page():
         .reset_index().reset_index(drop=True)
 
     seventhdf = data[data.Symbol == chosen_comp].sort_values('StartDate', ascending=False) \
-        [['Beta', 'UpsideBeta', 'DownsideBeta', 'Beta3yr', 'UpsideBeta3yr', 'DownsideBeta3yr']\
+        [['Beta', 'UpsideBeta', 'DownsideBeta', 'Beta3yr', 'UpsideBeta3yr', 'DownsideBeta3yr']]\
         .reset_index().reset_index(drop=True)
 
     # html_styling = """
