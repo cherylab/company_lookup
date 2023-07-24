@@ -86,7 +86,7 @@ def lookup_page():
         .reset_index().reset_index(drop=True)
 
     thirddf = data[data.Symbol == chosen_comp].sort_values('StartDate', ascending=False) \
-        [['EBIT_Margin', 'EBIT_RD_Sales', 'NetMargin', 'ROA', 'ROE']]
+        [['EBITMargin', 'EBIT_RD_Sales', 'NetMargin', 'ROA', 'ROE']]
    
     fourthdf = data[data.Symbol == chosen_comp].sort_values('StartDate', ascending=False) \
         [['ShareholderYield1', 'DividendYield', 'Dividend', 'BuyBackDollars', 'Cash', 'Net_Cash', 'ST_Debt', 'LT_Debt']]\
