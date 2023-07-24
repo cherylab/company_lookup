@@ -77,7 +77,7 @@ def lookup_page():
     chosen_comp = sidebar_config(options, tsla_index)
 
     company_name = data.loc[data['Symbol'] == chosen_comp, 'Company_Name'].values[0]
-    print(company_name)
+    st.markdown(f"## {company_name}")
     
     # firstdf = data[data.Company_Name == chosen_comp].sort_values('StartDate', ascending=False) \
     firstdf = data[data.Symbol == chosen_comp].sort_values('StartDate', ascending=False) \
