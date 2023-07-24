@@ -76,7 +76,7 @@ def lookup_page():
     # chosen_comp = st.selectbox(label="Symbol", options=options, index=tsla_index)
     chosen_comp = sidebar_config(options, tsla_index)
 
-    company_name = data.loc[roic_pretty['Symbol'] == chosen_comp, 'Company_Name'].values[0]
+    company_name = data.loc[data['Symbol'] == chosen_comp, 'Company_Name'].values[0]
     print(company_name)
     
     # firstdf = data[data.Company_Name == chosen_comp].sort_values('StartDate', ascending=False) \
