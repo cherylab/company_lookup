@@ -78,24 +78,31 @@ def lookup_page():
 
     # firstdf = data[data.Company_Name == chosen_comp].sort_values('StartDate', ascending=False) \
     firstdf = data[data.Symbol == chosen_comp].sort_values('StartDate', ascending=False) \
-        [['Sales', 'EBIT', 'EBIT_ROIC', 'OCF', 'OCF_ROIC', 'ROA', 'CurrAssets', 'Cash', 'TangibleCapital']]\
+        [['Sales', 'EBIT', 'EBIT_ROIC', 'OCF', 'OCF_ROIC', 'CurrAssets', 'Cash', 'AccountsPayable', 'NetFixedAssets', 'TangibleCapital']]\
         .reset_index().reset_index(drop=True)
 
     seconddf = data[data.Symbol == chosen_comp].sort_values('StartDate', ascending=False) \
-        [["EBIT", "RD", "FCF", "EBIT_ROIC", "EBIT_RD_ROIC", "FCF_ROIC", "FCF_RD_ROIC", "RD_Cap", "RD_Sales"]]\
+        [["EBIT", "RD", "EBIT_ROIC", "EBIT_RD_ROIC",  "FCF_RD_ROIC", "RD_Cap", "RD_Sales"]]\
         .reset_index().reset_index(drop=True)
 
     thirddf = data[data.Symbol == chosen_comp].sort_values('StartDate', ascending=False) \
-        [["ShareholderYield1", "DividendYield", "DownsideBeta", "UpsideBeta", "Net_Cash", "ST_Debt", "LT_Debt"]]\
-        .reset_index().reset_index(drop=True)
-
+        [['EBIT_Margin', 'EBIT_RD_Sales', 'NetMargin, 'ROA', 'ROE']]
+   
     fourthdf = data[data.Symbol == chosen_comp].sort_values('StartDate', ascending=False) \
-        [["EBIT_EV", "OCF_EV", "FCF_EV", "EBIT_RD_EV", "OCF_RD_EV", "FCF_RD_EV"]]\
+        [['ShareholderYield1', 'DividendYield', 'Dividend', 'BuyBackDollars', 'Cash', 'Net_Cash', 'ST_Debt', 'LT_Debt']]\
         .reset_index().reset_index(drop=True)
-
+    
     fifthdf =data[data.Symbol == chosen_comp].sort_values('StartDate', ascending=False) \
         [['EBITGrowth-1y', 'EBITGrowth-3y', 'SalesGrowth-1y', 'SalesGrowth-3y',
           'OCFGrowth-1y', 'OCFGrowth-3y', ]]\
+        .reset_index().reset_index(drop=True)
+    
+    sixthdf = data[data.Symbol == chosen_comp].sort_values('StartDate', ascending=False) \
+        [["EBIT_EV", "OCF_EV", "FCF_EV", "EBIT_RD_EV", "OCF_RD_EV", "FCF_RD_EV"]]\
+        .reset_index().reset_index(drop=True)
+
+    seventhdf = data[data.Symbol == chosen_comp].sort_values('StartDate', ascending=False) \
+        [['Beta', 'UpsideBeta', 'DownsideBeta', 'Beta3yr', 'UpsideBeta3yr', 'DownsideBeta3yr']\
         .reset_index().reset_index(drop=True)
 
     # html_styling = """
@@ -160,17 +167,23 @@ def lookup_page():
         #                    data=firstdf,
         #                    file_name='ebit_roic.xlsx')
 
-    with st.expander("R&D Focused", expanded=True):
+    with st.expander("R&D", expanded=True):
         st.table(seconddf)
 
-    with st.expander("Yield, Beta, Cash & Debt", expanded=True):
+    with st.expander("Margins", expanded=True):
         st.table(thirddf)
 
-    with st.expander("Earnings Yield Valuation", expanded=True):
+    with st.expander("Shareholder Yields, Cash & Debt", expanded=True):
         st.table(fourthdf)
 
-    with st.expander("Growth Focused", expanded=True):
+    with st.expander("Growth", expanded=True):
         st.table(fifthdf)
+
+    with st.expander("Earnings Yield", expanded=True):
+        st.table(sixthdf)
+
+    with st.expander("Beta", expanded=True):
+        st.table(seventhdf)
 
     # st.title('Installed Packages')
     # installed_packages = [(d.project_name, d.version) for d in pkg_resources.working_set]
