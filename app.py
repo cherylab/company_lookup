@@ -75,7 +75,8 @@ def lookup_page():
 
     # chosen_comp = st.selectbox(label="Symbol", options=options, index=tsla_index)
     chosen_comp = sidebar_config(options, tsla_index)
-
+    
+    # prints company name
     company_name = data.loc[data['Symbol'] == chosen_comp, 'Company_Name'].values[0]
     st.markdown(f"## {company_name}")
     
